@@ -20,6 +20,7 @@
 --
 -- Connection group types
 --
+CREATE DATABASE guacamole_db;
 
 CREATE TYPE guacamole_connection_group_type AS ENUM(
     'ORGANIZATIONAL',
