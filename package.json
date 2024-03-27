@@ -1,15 +1,15 @@
 {
-  "name": "hackathon-starter",
+  "name": "Public Phone",
   "version": "8.0.0",
-  "description": "A boilerplate for Node.js web applications",
+  "description": "A Platform",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sahat/hackathon-starter.git"
+    "url": "https://github.com/ph3ar/ph3ar-hackathon-starter.git"
   },
   "license": "MIT",
-  "author": "Sahat Yalkabov",
+  "author": "BigNerdLoLz",
   "contributors": [
-    "Yashar Fakhari (https://github.com/YasharF)"
+    "Kyle Turk (https://github.com/wildturkey)"
   ],
   "scripts": {
     "postinstall": "patch-package && npm run scss",

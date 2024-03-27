@@ -7,14 +7,25 @@ html.h-100
     meta(name='csrf-token', content=_csrf)
     title #{title} - Public Phone
     link(rel='shortcut icon', href='/favicon.png' type='image/png')
-    // Use local Bootstrap CSS only if you're not using a CDN version.
-    // Uncomment the line below if you're not loading Bootstrap from a CDN.
-    // link(rel='stylesheet', href='/css/bootstrap.min.css')
+    // Retro styling
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap')
+    style.
+      body, h1, h2, h3, p {
+        font-family: 'Press Start 2P', cursive;
+      }
+      .retro-color {
+        background-color: #000;
+        color: #ff8c00;
+      }
+      .container {
+        border: 3px solid #ff8c00;
+        padding: 20px;
+      }
     link(rel='stylesheet', href='/css/main.css')
     link(rel='stylesheet', href='https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css')
     block head
 
-  body.d-flex.flex-column.h-100
+  body.d-flex.flex-column.h-100.retro-color
     include partials/header
 
     .flex-shrink-0
@@ -25,7 +36,7 @@ html.h-100
     include partials/footer
 
     script(src='/js/lib/jquery.min.js')
-    script(src='/js/lib/bootstrap.bundle.min.js') // Prefer 'bootstrap.bundle.min.js' as it includes Popper.js
+    script(src='/js/lib/bootstrap.bundle.min.js')
     script(src='/js/main.js')
     script(src='https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js')
 
@@ -33,10 +44,10 @@ html.h-100
       window.cookieconsent.initialise({
         "palette": {
           "popup": {
-            "background": "#f8f9fa"
+            "background": "#000"
           },
           "button": {
-            "background": "#343a40"
+            "background": "#ff8c00"
           }
         },
         "position": "bottom-right",
@@ -44,6 +55,7 @@ html.h-100
           "href": "/privacy-policy.html"
         }
       });
+
 
     // Google Analytics: Ensure you're compliant with data protection regulations when using analytics.
     script.
