@@ -22,6 +22,8 @@
 --
 CREATE DATABASE guacamole_db;
 
+CREATE DATABASE publicphone;
+
 CREATE TYPE guacamole_connection_group_type AS ENUM(
     'ORGANIZATIONAL',
     'BALANCING'
