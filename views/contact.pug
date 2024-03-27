@@ -1,4 +1,4 @@
-extends layout 
+extends layout
 
 block head
   // Including reCAPTCHA and animate.css
@@ -32,7 +32,7 @@ block content
               .form-group
                 label(for='message') Message
                 // The autofocus condition is moved directly into the attribute for clarity
-                textarea.form-control(name='message', id='message', rows='7', placeholder='Type your message here...', autofocus=!unknownUser, required)
+                textarea.form-control(name='message', id='message', rows='7', placeholder='Type your message here...', autofocus=unknownUser ? false : true, required)
 
               .form-group
                 .d-flex.align-items-center.justify-content-between.mt-4.mb-0

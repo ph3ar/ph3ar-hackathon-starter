@@ -1,16 +1,29 @@
 extends layout
 
 block content
-  h1 Start Call
-  section#jitsiMeetContainer(style='width: 100%; min-height: 500px; height: 80vh;')
+  h1 Start or Join a Jitsi Meeting
+  form#meetingForm
+    .form-group
+      label(for='meetingName') Enter a meeting name to join or leave blank to start a new one:
+      input#meetingName.form-control(type='text', placeholder='Meeting Name')
+    button.btn.btn-primary(type='submit') Submit
+
+  section#jitsiMeetContainer(style='width: 100%; min-height: 500px; height: 80vh; display: none;')
 
   script(src='https://meet.jit.si/external_api.js' defer)
   script.
     document.addEventListener('DOMContentLoaded', function() {
-      initializeJitsiMeet();
+      const form = document.getElementById('meetingForm');
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const meetingName = document.getElementById('meetingName').value.trim();
+        initializeJitsiMeet(meetingName || 'PublicPhoneMeeting' + Math.random().toString(36).substr(2, 5));
+        form.style.display = 'none'; // Hide form
+        document.getElementById('jitsiMeetContainer').style.display = 'block'; // Show Jitsi container
+      });
     });
 
-    function initializeJitsiMeet() {
+    function initializeJitsiMeet(roomName) {
       const domain = 'meet.jit.si';
       const container = document.getElementById('jitsiMeetContainer');
       if (!container) {
@@ -19,11 +32,10 @@ block content
       }
 
       const options = {
-        roomName: 'PublicPhoneMeeting' + Math.random().toString(36).substr(2, 5),
+        roomName: roomName,
         width: '100%',
         height: Math.max(container.clientHeight, window.innerHeight || 0) - 200,
         parentNode: container,
-        // Customizing the UI
         interfaceConfigOverwrite: {
           TOOLBAR_BUTTONS: [
             'microphone', 'camera', 'closedcaptions', 'fullscreen',
@@ -35,7 +47,6 @@ block content
           SHOW_JITSI_WATERMARK: false,
         },
         configOverwrite: {
-          // Disabling recording to avoid privacy concerns
           disableRecordAudioNotification: true,
           disableRecording: true,
         },
@@ -43,7 +54,6 @@ block content
 
       try {
         const api = new JitsiMeetExternalAPI(domain, options);
-        // Example: Add an event listener
         api.addEventListener('participantJoined', () => {
           console.log('A new participant has joined the meeting.');
         });

@@ -1,4 +1,11 @@
-/* eslint-env jquery, browser */
+// Before (deprecated usage)
 $(document).ready(() => {
-  // Place JavaScript code here...
+  // Example functionality: Update the text of an element with id 'welcome-message'
+  $('#welcome-message').text('Welcome to the updated page!');
+});
+
+// After (recommended usage)
+$(function() {
+  // The same functionality after updating to the recommended usage
+  $('#welcome-message').text('Welcome to the updated page!');
 });

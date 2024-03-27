@@ -1,61 +1,95 @@
 extends ../layout
 
 block content
-  .pb-2.mt-2.mb-4.border-bottom
-    h2
-      i.fab.fa-steam-square.fa-sm.iconpadding
-      |  Steam Web API
+  .container.pt-4
+    .row.justify-content-center
+      .col-12.col-md-10.col-lg-8
+        .pb-2.mt-2.mb-4.border-bottom
+          h2.d-flex.align-items-center
+            i.fab.fa-steam.fa-lg.me-2
+            | Steam Web API Exploration
 
-  .btn-group.d-flex(role='group')
-    a.btn.btn-primary(href='https://developer.valvesoftware.com/wiki/Steam_Web_API', target='_blank').w-100
-      i.far.fa-check-square.fa-sm.iconpadding
-      |  API Overview
+        .d-flex.flex-wrap.gap-2.mb-3
+          a.btn.btn-secondary(href='https://developer.valvesoftware.com/wiki/Steam_Web_API', target='_blank')
+            i.far.fa-check-square.me-1
+            | API Overview
 
-  br
+        .alert.alert-info
+          h4 Steam ID Information
+          p Displaying public information for Steam ID: #{playerSummary.steamid}
 
-  .alert.alert-info
-    h4 Steam ID
-    p Displaying public information for Steam ID: #{playerSummary.steamid}.
-
-  h3 Profile Information
-  .row
-    .col-md-4
-      img(src=playerSummary.avatarfull, alt='Profile Picture', class='img-fluid rounded-circle')
-    .col-md-8
-      h4 #{playerSummary.personaname}
-      p Lead Account created: #{new Date(playerSummary.timecreated * 1000).toDateString()}
-      p Lead Last Online: #{new Date(playerSummary.lastlogoff * 1000).toDateString()}
-      p Online Status: 
-        if playerSummary.personastate === 1
-          span.badge.bg-success text-white Online
-        else
-          span.badge.bg-danger text-white Offline
-      if playerSummary.realname
-        p Real Name: #{playerSummary.realname}
-      if playerSummary.loccountrycode
-        p Country: #{playerSummary.loccountrycode}
-      
-  if playerAchievements
-    h3 #{playerAchievements.gameName} Achievements
-    .row
-      each achievement in playerAchievements.achievements
-        if achievement.achieved
+        h3.mb-3 Profile Information
+        .row.mb-4
           .col-md-4
-            .card.mt-2
-              .card-body
-                h5.card-title #{achievement.name}
-                p.card-text #{achievement.description}
-  else
-    .alert.alert-warning No player achievements, or the player achievements are not public.
+            img(src=playerSummary.avatarfull alt='Profile Picture' class='img-fluid rounded-circle mb-3')
+          .col-md-8
+            h4 #{playerSummary.personaname}
+            p Account created: #{new Date(playerSummary.timecreated * 1000).toLocaleDateString()}
+            p Last Online: #{new Date(playerSummary.lastlogoff * 1000).toLocaleDateString()}
+            p Online Status:
+              if playerSummary.personastate === 1
+                span.badge.bg-success.text-white Online
+              else
+                span.badge.bg-warning.text-dark Offline
+            if playerSummary.realname
+              p Real Name: #{playerSummary.realname}
+            if playerSummary.loccountrycode
+              p Country: #{playerSummary.loccountrycode}
 
-  if ownedGames.games
-    h3 Owned Games
-    p Lead #{ownedGames.game_count} games
-    .row
-      each game in ownedGames.games
-        .col-md-3.mb-4
-          a(href='https://store.steampowered.com/app/' + game.appid, target='_blank')
-            img.img-fluid(src='https://cdn.cloudflare.steamstatic.com/steam/apps/' + game.appid + '/header.jpg', alt=game.name)
-            h5 #{game.name}
-  else
-    .alert.alert-warning No games found or the game list is not public.
+        if playerAchievements && playerAchievements.achievements.length > 0
+          h3.mb-3 #{playerAchievements.gameName} Achievements
+          .row
+            each achievement in playerAchievements.achievements
+              if achievement.achieved
+                .col-md-4.mb-4
+                  .card
+                    .card-body
+                      h5.card-title #{achievement.name}
+                      p.card-text #{achievement.description}
+        else
+          .alert.alert-warning No player achievements, or the player achievements are not public.
+
+        if ownedGames.games
+          h3.mb-3 Owned Games
+          p #{ownedGames.game_count} games
+          .row.g-3
+            each game in ownedGames.games
+              .col-md-3
+                a(href=`https://store.steampowered.com/app/${game.appid}` target='_blank')
+                  img.img-fluid.mb-1(src=`https://cdn.cloudflare.steamstatic.com/steam/apps/${game.appid}/header.jpg` alt=game.name)
+                  h6 #{game.name}
+        else
+          .alert.alert-warning No games found or the game list is not public.
+        
+        // User Profile and Social Links Section
+        if user
+          .user-profile.mb-3
+            h3.mb-3 User Profile and Social Links
+            .row
+              .col-md-4
+                img(src=user.gravatar(200) alt="Profile Picture" class="img-fluid rounded-circle mb-3")
+                h4 #{user.profile.name}
+                p #{user.profile.location}
+                if user.profile.website
+                  p Website:
+                    a(href=user.profile.website) #{user.profile.website}
+              .col-md-8
+                ul.list-unstyled
+                  if user.steam
+                    li
+                      a(href=`https://steamcommunity.com/id/${user.steam}`) Steam
+                  if user.facebook
+                    li
+                      a(href=`https://www.facebook.com/${user.facebook}`) Facebook
+                  if user.twitter
+                    li
+                      a(href=`https://twitter.com/${user.twitter}`) Twitter
+                  if user.linkedin
+                    li
+                      a(href=`https://www.linkedin.com/in/${user.linkedin}`) LinkedIn
+                  if user.github
+                    li
+                      a(href=`https://github.com/${user.github}`) GitHub
+                  // Add more social links as needed
+        else
+          .alert.alert-warning User profile information is not available or is private.

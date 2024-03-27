@@ -1,5 +1,5 @@
-if playerAchievements
-  h3 #{playerAchievements.gameName} Achievements
+if playerAchievements && playerAchievements.achievements.length > 0
+  h3.mb-3 #{playerAchievements.gameName} Achievements
   .row
     each achievement in playerAchievements.achievements
       if achievement.achieved
