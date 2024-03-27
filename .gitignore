@@ -10,7 +10,9 @@ lib-cov
 *.env.example
 **/.env*
 *.env*
-
+nginx/*.cert
+nginx/*.pem
+nginx/*
 pids
 logs
 results
