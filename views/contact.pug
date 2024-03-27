@@ -1,7 +1,8 @@
-extends layout
+extends layout 
 
 block head
-  script(src='https://www.google.com/recaptcha/api.js' async='' defer='')
+  // Including reCAPTCHA and animate.css
+  script(src='https://www.google.com/recaptcha/api.js' async defer)
   link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css')
 
 block content
@@ -12,10 +13,13 @@ block content
           .card-header
             h3.text-center.font-weight-light.my-4 Contact Us
           .card-body
+            // Ensure your form action and method are correctly set up for your server
             form(method='POST', class='animate__animated animate__fadeIn')
+              // Assuming _csrf is a variable passed from your server for CSRF protection
               input(type='hidden', name='_csrf', value=_csrf)
 
-              if (unknownUser)
+              // Check if the user is unknown and display name/email fields accordingly
+              if unknownUser
                 .form-row
                   .form-group.col-md-6
                     label(for='name') Full Name
@@ -27,13 +31,16 @@ block content
 
               .form-group
                 label(for='message') Message
-                textarea.form-control(name='message', id='message', rows='7', placeholder='Type your message here...', autofocus=(!unknownUser).toString(), required)
+                // The autofocus condition is moved directly into the attribute for clarity
+                textarea.form-control(name='message', id='message', rows='7', placeholder='Type your message here...', autofocus=!unknownUser, required)
 
               .form-group
                 .d-flex.align-items-center.justify-content-between.mt-4.mb-0
+                  // Ensure sitekey variable is correctly passed for reCAPTCHA
                   .g-recaptcha(data-sitekey=sitekey)
                   button.btn.btn-primary(type='submit')
                     i.far.fa-envelope.fa-sm
                     |  Send Message
 
+  // Including FontAwesome for the envelope icon
   script(src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous')

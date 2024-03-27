@@ -1,0 +1,11 @@
+if gameStats
+  h3 #{gameStats.gameName} Statistics
+  ul.list-unstyled
+    li Total playtime: #{gameStats.totalPlayTime} hours
+    li Achievements unlocked: #{gameStats.achievementsUnlocked} of #{gameStats.totalAchievements}
+    if gameStats.leaderboards
+      h4 Leaderboards
+      each leaderboard in gameStats.leaderboards
+        li #{leaderboard.name}: #{leaderboard.position}
+else
+  .alert.alert-warning No game statistics available or not public.

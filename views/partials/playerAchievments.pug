@@ -1,0 +1,12 @@
+if playerAchievements
+  h3 #{playerAchievements.gameName} Achievements
+  .row
+    each achievement in playerAchievements.achievements
+      if achievement.achieved
+        .col-md-4
+          .card.mt-2
+            .card-body
+              h5.card-title #{achievement.name}
+              p.card-text #{achievement.description}
+else
+  .alert.alert-warning No player achievements, or the player achievements are not public.

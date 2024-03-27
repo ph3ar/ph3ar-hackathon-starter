@@ -2,15 +2,52 @@ extends layout
 
 block content
   h1 Start Call
-  div#jitsiMeetContainer
+  section#jitsiMeetContainer(style='width: 100%; min-height: 500px; height: 80vh;')
 
-  script(src='https://meet.jit.si/external_api.js')
+  script(src='https://meet.jit.si/external_api.js' defer)
   script.
-    const domain = 'meet.jit.si';
-    const options = {
-      roomName: 'PublicPhoneMeeting' + Math.random().toString(36).substr(2, 5),
-      width: '100%',
-      height: 700,
-      parentNode: document.getElementById('jitsiMeetContainer'),
-    };
-    const api = new JitsiMeetExternalAPI(domain, options);
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeJitsiMeet();
+    });
+
+    function initializeJitsiMeet() {
+      const domain = 'meet.jit.si';
+      const container = document.getElementById('jitsiMeetContainer');
+      if (!container) {
+        console.error('Jitsi Meet container not found.');
+        return;
+      }
+
+      const options = {
+        roomName: 'PublicPhoneMeeting' + Math.random().toString(36).substr(2, 5),
+        width: '100%',
+        height: Math.max(container.clientHeight, window.innerHeight || 0) - 200,
+        parentNode: container,
+        // Customizing the UI
+        interfaceConfigOverwrite: {
+          TOOLBAR_BUTTONS: [
+            'microphone', 'camera', 'closedcaptions', 'fullscreen',
+            'fodeviceselection', 'hangup', 'profile', 'info', 'chat',
+            'recording', 'livestreaming', 'etherpad', 'sharedvideo', 'settings',
+            'raisehand', 'videoquality', 'filmstrip', 'invite', 'feedback', 'stats', 'shortcuts',
+            'tileview', 'videobackgroundblur', 'download', 'help', 'mute-everyone', 'security'
+          ],
+          SHOW_JITSI_WATERMARK: false,
+        },
+        configOverwrite: {
+          // Disabling recording to avoid privacy concerns
+          disableRecordAudioNotification: true,
+          disableRecording: true,
+        },
+      };
+
+      try {
+        const api = new JitsiMeetExternalAPI(domain, options);
+        // Example: Add an event listener
+        api.addEventListener('participantJoined', () => {
+          console.log('A new participant has joined the meeting.');
+        });
+      } catch (error) {
+        console.error('Failed to initialize Jitsi Meet API:', error);
+      }
+    }

@@ -1,0 +1,20 @@
+// friendslist.pug
+// Assuming 'friendsList' is an array of friend objects passed to the template
+
+if friendsList && friendsList.length > 0
+  h3 Friends List
+  .row
+    each friend in friendsList
+      .col-md-4.mb-4
+        .card
+          img.card-img-top(src=friend.avatarfull alt=friend.personaname style='width: 100%; height: auto;')
+          .card-body
+            h5.card-title #{friend.personaname}
+            p.card-text
+              if friend.personastate === 1
+                span.text-success Online
+              else
+                span.text-muted Offline
+            a.btn.btn-primary(href=`https://steamcommunity.com/profiles/${friend.steamid}` target='_blank') View Profile
+else
+  .alert.alert-warning No friends found or the friends list is not public.

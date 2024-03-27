@@ -1,10 +1,9 @@
 FROM node:20-slim
 
-
 WORKDIR /app
 ENV NODE_ENV development
 
-COPY .env.example /app/.env.example
+#COPY .env.example /app/.env.example
 COPY .env /app/.env
 COPY . /app
 

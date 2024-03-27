@@ -18,7 +18,7 @@ const multer = require('multer');
 const rateLimit = require('express-rate-limit');
 const exec = require('child_process').exec;
 const jitsiController = require('./controllers/jitsi');
-const upload = multer({ dest: path.join(__dirname, 'uploads') });
+const upload = multer({ dest: path.join(__dirname, '/public/uploads') });
 
 dotenv.config({ path: '.env.example' });
 

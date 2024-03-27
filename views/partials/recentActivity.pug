@@ -1,0 +1,12 @@
+if recentActivity.games
+  h3 Recent Activity
+  .row
+    each game in recentActivity.games
+      .col-md-4
+        .card.mt-2
+          img.card-img-top(src='https://cdn.cloudflare.steamstatic.com/steam/apps/' + game.appid + '/header.jpg', alt=game.name)
+          .card-body
+            h5.card-title #{game.name}
+            p.card-text Played for #{game.playtime_2weeks} minutes in the last 2 weeks.
+else
+  .alert.alert-warning No recent activity found or not public.

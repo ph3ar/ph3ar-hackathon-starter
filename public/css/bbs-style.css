@@ -1,4 +1,4 @@
-extends ../layout
+extends .arcade.css
 
 block content
   .bbs-signup-wrapper.pb-2.mt-2.mb-4
