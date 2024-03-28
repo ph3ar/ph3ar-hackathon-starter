@@ -4,59 +4,59 @@ body, h1, h2, h3, h4, p {
     padding: 0;
 }
 
-/* Set a background image for a nostalgic arcade look */
+/* Set a background image for a nostalgic arcade look, with more green and orange */
 body {
-    background-image: url('arcade-style.png'); /* Replace with the path to your own arcade-themed background image */
+    background-image: url('arcade-style.png'); /* Adjust the image to include more green and orange tones */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Fixed background image */
 }
 
-/* Style the header with an arcade font and color */
+/* Style the header with an arcade font and enhanced color contrast */
 header {
     text-align: center;
     padding: 20px;
     font-family: 'Press Start 2P', cursive;
-    color: #ff6600; /* Orange color for the header text */
+    color: #00ff00; /* Bright green color for the header text to contrast against possibly dark backgrounds */
 }
 
-/* Style the game info section with a translucent background */
+/* Style the game info section with a greenish translucent background for a fresh look */
 .game-info {
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    background-color: rgba(0, 255, 0, 0.5); /* Semi-transparent green background */
     padding: 20px;
     border-radius: 10px;
     margin: 20px;
 }
 
-/* Style game options with a box shadow and arcade font */
+/* Style game options with a greenish box shadow and arcade font */
 .game {
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    background-color: rgba(0, 255, 0, 0.5); /* Semi-transparent green background */
     padding: 20px;
     border-radius: 10px;
     margin: 20px;
-    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5); /* White box shadow */
+    box-shadow: 0px 0px 10px rgba(255, 165, 0, 0.5); /* Orange box shadow for contrast */
     transition: transform 0.2s ease-in-out;
 }
 
-/* Add hover effect for game options */
+/* Add hover effect for game options, enhancing the sense of interaction */
 .game:hover {
     transform: scale(1.05); /* Slightly scale up on hover */
 }
 
-/* Style game titles with a nostalgic neon glow */
+/* Style game titles with a nostalgic neon glow, using green for a fresh look */
 h4 {
     font-size: 24px;
-    color: #ff6600; /* Orange color for game titles */
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5); /* White text shadow */
+    color: #00ff00; /* Bright green color for game titles */
+    text-shadow: 2px 2px 4px rgba(255, 165, 0, 0.5); /* Orange text shadow for a glowing effect */
 }
 
-/* Style the "Play Now" button with a retro orange color */
+/* Style the "Play Now" button with a vibrant green color, ensuring visibility */
 .button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #ff6600; /* Orange color for buttons */
-    color: black;
+    background-color: #00ff00; /* Bright green color for buttons */
+    color: black; /* Ensure text visibility */
     text-decoration: none;
     font-size: 20px;
     border-radius: 5px;
@@ -64,30 +64,30 @@ h4 {
     transition: background-color 0.2s ease-in-out;
 }
 
-/* Add hover effect for buttons */
+/* Add hover effect for buttons, making them lighter green on hover for interactivity */
 .button:hover {
-    background-color: #ff9900; /* Slightly lighter orange on hover */
+    background-color: #66ff66; /* Lighter green on hover */
 }
 
-/* Style the footer with an arcade font and color */
+/* Style the footer with an arcade font and color, adding a green touch */
 footer {
     text-align: center;
     padding: 10px;
     font-family: 'Press Start 2P', cursive;
-    color: #ff6600; /* Orange color for the footer text */
+    color: #00ff00; /* Bright green color for the footer text */
     background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
-    border-top: 1px solid #ff6600; /* Orange border on top */
+    border-top: 1px solid #00ff00; /* Green border on top */
     clear: both;
 }
 
-/* Style links with a nostalgic neon glow */
+/* Style links with a nostalgic neon glow, ensuring they stand out */
 a {
-    color: #ff6600; /* Orange color for links */
+    color: #ff6600; /* Orange color for links, maintaining the theme */
     text-decoration: none;
-    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.7); /* White text shadow for links */
+    text-shadow: 1px 1px 2px rgba(0, 255, 0, 0.7); /* Green text shadow for links, ensuring visibility */
 }
 
-/* Add hover effect for links */
+/* Add hover effect for links, shifting to a lighter orange on hover */
 a:hover {
     color: #ff9900; /* Slightly lighter orange on hover */
 }

@@ -1,25 +1,43 @@
-extends .arcade.css
+/* Extend the arcade theme to form elements */
 
-block content
-  .bbs-signup-wrapper.pb-2.mt-2.mb-4
-    h3.bbs-signup-title Sign up
+.bbs-signup-wrapper {
+  background-color: rgba(0, 0, 0, 0.8); /* Dark semi-transparent background */
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto; /* Center the form */
+  width: 80%; /* Adjust width as needed */
+  box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); /* Orange glow to match arcade theme */
+}
 
-    form#signup-form.bbs-form(method='POST')
-      input(type='hidden', name='_csrf', value=_csrf)
+.bbs-form-group {
+  margin-bottom: 15px; /* Space out form groups */
+}
 
-      .bbs-form-group.mb-3
-        label.bbs-label(for='email') Email
-        input.bbs-input(type='email', name='email', id='email', placeholder='Email', autofocus, autocomplete='email', required)
+.bbs-label {
+  display: block; /* Ensure labels are block-level for proper spacing */
+  color: #ff6600; /* Orange color to match arcade theme */
+  margin-bottom: 5px; /* Space between label and input */
+}
 
-      .bbs-form-group.mb-3
-        label.bbs-label(for='password') Password
-        input.bbs-input(type='password', name='password', id='password', placeholder='Password', autocomplete='new-password', minlength='8', required)
+.bbs-input {
+  width: 100%; /* Full width of the form group */
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ff6600; /* Orange border */
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white for readability */
+}
 
-      .bbs-form-group.mb-3
-        label.bbs-label(for='confirmPassword') Confirm Password
-        input.bbs-input(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password', autocomplete='new-password', minlength='8', required)
+.bbs-btn {
+  background-color: #00ff00; /* Bright green for visibility and to match theme */
+  color: black; /* Ensure text is visible */
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block; /* Allows for proper spacing and alignment */
+  border: none; /* Remove default border */
+  transition: background-color 0.2s ease-in-out; /* Smooth transition for hover effect */
+}
 
-      .bbs-form-group
-        button.bbs-btn(type='submit')
-          i.fas.fa-user-plus.fa-sm
-          | Signup
+.bbs-btn:hover {
+  background-color: #66ff66; /* Lighter green on hover for interaction feedback */
+}
